@@ -1,0 +1,70 @@
+<div id='container' class='container d-flex flex-column mt-2'>
+  <ngb-alert #selfClosingAlert *ngIf='alertType === "success"' type='success' style='text-align: center;'(closed)='alertType = ""'>
+    {{companyAdded}} added to Watchlist
+  </ngb-alert>
+
+  <ngb-alert #selfClosingAlert *ngIf='alertType === "danger"' type='danger' style='text-align: center;' (closed)='alertType = ""'>
+    {{companyAdded}} removed from Watchlist
+  </ngb-alert>
+
+
+  <ngb-alert #sellClosingAlert *ngIf="isStockSold" style='text-align: center;' type="danger" (closed)="isStockSold = false">{{stock}} sold successfully</ngb-alert>
+
+  <ngb-alert #buyClosingAlert *ngIf="isStockBought" style='text-align: center;' type="success" (closed)="isStockBought = false">{{stock}} bought successfully</ngb-alert>
+
+  <div id='companydetails-main' class='d-flex justify-content-between '>
+    <div id='left-mid-component' class='w-50 d-flex justify-content-between'>
+      <div id='company-description' class="d-flex flex-column ">
+        <div id='company-description-row1' class='d-flex align-items-center'>
+          <div id='company-description-ticker' class='text-uppercase h2'>
+            {{ result.profile.ticker}}
+          </div>
+          <div id='star' class='ml-3 mb-2 align-self-xl-center'>
+            <fa-icon id='company-description-row-star-color'
+              *ngIf="!(getLocal('watchlistCompanies')||[]).includes(result.profile.ticker)" (click)='this.starToggle()'
+              [icon]="farStar" [styles]="{ stroke: 'black', color: 'black' }" size='lg'></fa-icon>
+            <fa-icon id='company-description-row-star'
+              *ngIf="(getLocal('watchlistCompanies')||[]).includes(result.profile.ticker)" (click)='this.starToggle()'
+              [icon]="fasStar" [styles]="{ stroke: 'red', color: '#f9da49' }"></fa-icon>
+          </div>
+        </div>
+        <div id='header-name' class='h4' style='color: #6d747b'> {{result.profile.name}}</div>
+        <div id='header-exchange' class='h5 text-uppercase' style='color: #757575; font-weight:600;'>
+          {{result.profile.exchange}}</div>
+        <app-buysellbutton [ticker]='result.profile.ticker' [quote]='quote' [buyStockAlert]="buyStockAlert" [sellStockAlert]="sellStockAlert" [value]='quote.l' [source]="'search'">
+        </app-buysellbutton>
+
+      </div>
+      <img id='company-img' src={{result.profile.logo}}>
+    </div>
+    <div id='company-description-right' class='d-flex flex-column ml-1 align-items-end font-weight-bold'>
+      <div class='d-flex flex-column  align-items-end'
+        [ngStyle]="{'color': quote.dp == 0? '#ffffff' : (quote.dp < 0 ? '#ea3323': '#367b21')}">
+        <div class='h2'>{{quote.l}}</div>
+        <div class='h4'>
+          <div id='stock-values'>
+            <fa-icon *ngIf="quote.dp > 0" [icon]='faCaretUp' [styles]="{color: '#367b21'}"></fa-icon>
+            <fa-icon *ngIf="quote.dp < 0" [icon]='faCaretDown' [styles]="{color: '#ea3323'}"></fa-icon>
+            {{quote.d}}
+            ({{quote.dp}}%)
+
+          </div>
+        </div>
+      </div>
+      <div style='color:#575757'>{{timestamp}}</div>
+
+    </div>
+
+
+  </div>
+  <div id='market-status' class=" align-self-sm-center justify-content-center font-weight-bold"
+    [ngStyle]="{'color': quote.marketStatus === 'closed' ? '#ea3323': '#367b21'}">
+    <div style="text-align:center;"> {{marketStatus}}</div>
+  </div>
+  <div id='company-tabs'>
+    <app-company-tabs [result]='result' [searchSubmit]="searchSubmit">
+      <!-- [quote]='quote' -->
+
+    </app-company-tabs>
+  </div>
+</div>

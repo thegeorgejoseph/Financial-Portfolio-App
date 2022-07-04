@@ -1,0 +1,9 @@
+.btn-close{
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  outline: none;
+  border: none;
+  background: none;
+  -webkit-text-stroke: 4px;
+}

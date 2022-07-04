@@ -1,0 +1,17 @@
+.btn-close{
+  box-sizing: content-box;
+  width: 1em;
+  height: 1em;
+  outline: none;
+  border: none;
+  /* margin-top: -3rem; */
+  background: none;
+  -webkit-text-stroke: 4px;
+}
+.outline{
+  border: solid 1px #e3e3e3;
+}
+
+#card{
+  cursor: pointer;
+}

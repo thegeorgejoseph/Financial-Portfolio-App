@@ -1,0 +1,52 @@
+
+
+.table th, .table td{
+  width: auto !important;
+  border-top:none !important;
+  padding: 0 !important;
+}
+.table th{
+  text-align: left !important;
+}
+.table td{
+  text-align: left !important;
+  padding-left: 0.25rem !important;
+}
+
+@media screen and (max-width: 915px) {
+  #summary {flex-direction: column;}
+  #quote-data{
+    margin-left: 3rem;
+  }
+}
+
+@media screen and (max-width: 1180px) {
+  #summary {flex-direction: column;}
+  #quote-data{
+    margin-left: 3rem;
+  }
+}
+
+#title
+  {text-decoration: underline;
+  text-align:center;
+}
+
+a{
+  text-decoration: none;
+  cursor: pointer;
+}
+.header{
+  font-weight: 700;
+}
+
+.chart{
+
+  width: fit-content;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+

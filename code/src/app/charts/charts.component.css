@@ -1,0 +1,15 @@
+.chart-container {
+  width: fit-content;
+  margin:0px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#chart-ohlc{
+  width:72vw;
+  height: 600px;
+  @media screen  and (max-width: 600px){
+      width: 90vw;
+  }
+}

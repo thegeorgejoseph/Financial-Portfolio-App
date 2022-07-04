@@ -1,0 +1,61 @@
+<div id='news-items' class='d-flex flex-wrap align-content-lg-around mt-5'>
+    <div id='news-item-component' class='d-flex justify-content-around m-2' *ngFor="let newsItem of news">
+        <mat-card class='w-100 d-flex mat-elevation-z0 outline custom ' (click)='open(newsItem,content)'>
+            <img mat-card-md-image class="imgs" src="{{newsItem.image}}" id='news-image'>
+
+            <mat-card-content id='news-title'>
+                {{newsItem.headline}}
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+      <div class="modal-title" id="modal-basic-title">
+          <div class='h3'>
+            {{activeNews.source}}
+          </div>
+          <div id='published-date'>
+              {{activeNews.datetime}}
+        </div>
+
+      </div>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <fa-icon [icon]='faXmark' [styles] = "{width: '1vw', height: '1vw', color: '#7d7d7d'}"></fa-icon>
+      </button>
+    </div>
+    <div class="modal-body">
+        <div class='h5'>
+            {{activeNews.headline}}
+        </div>
+        <div id='description'>
+            {{activeNews.summary}}
+        </div>
+        <div class='more-info'>
+            For more details, click <a [href]='activeNews.url' target="_blank">
+                here
+            </a>
+        </div>
+        <mat-card class='w-100 d-flex flex-column mat-elevation-z0 outline mt-4'>
+            <mat-card-content  id='share' class='justify-content-left'>
+                Share
+            </mat-card-content>
+            <mat-card-content  id='twitter' >
+                <div id='sharing-icons'>
+                   <a [href]="'https://twitter.com/intent/tweet?text='+activeNews.headline+'&url='+activeNews.url" target='_blank'>
+                       <fa-icon [icon]='faTwitter' [styles] = "{width: '2vw', height: '2vw'}" >
+
+                        </fa-icon>
+                    </a>
+                    <a [href]="'http://www.facebook.com/share.php?u='+activeNews.url" target='_blank'>
+                        <fa-icon [icon]='faFacebook' [styles] = "{width: '2vw', height: '2vw', color:'#0000f5'}">
+
+                        </fa-icon>
+                    </a>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+  </ng-template>

@@ -1,0 +1,51 @@
+<div id='title'>
+  <h3 class="text-center text-uppercase p-3 font-weight-bold ">
+    stock search
+  </h3>
+</div>
+<div id='search-form' class="d-flex justify-content-center flex-grow-1 flex-column">
+
+
+  <form class='search-form d-flex justify-content-center p-1' (submit)="searchSubmit(searchIp.value)" #searchInput>
+    <div id='search-input' class="input-group">
+      <input class='ml-4' placeholder="Enter stock ticker symbol" type="text" matInput [matAutocomplete]="auto"
+        class='form-control' [formControl]='searchIp'>
+
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)='searchSubmit($event.option.value)'>
+        <mat-option *ngIf='isLoadingAutoComplete'>
+          <mat-spinner diameter='30'></mat-spinner>
+        </mat-option>
+        <mat-option #autocompleteOptions *ngFor="let company of autocompleteResult" [value]='company'>
+          <span #displaySymbol *ngIf='!isLoadingAutoComplete'>{{ company.displaySymbol }}</span> |
+          <small #description *ngIf='!isLoadingAutoComplete'> {{company.description}}</small>
+        </mat-option>
+      </mat-autocomplete>
+      <button type='submit' class='input-group-text'>
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
+          viewBox="0 0 16 16">
+          <path
+            d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+        </svg>
+      </button>
+      <button class="input-group-text" type='reset' (click)='searchClear()'>
+        <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor" class="bi bi-x"
+          viewBox="0 0 16 16">
+          <path
+            d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
+        </svg>
+      </button>
+    </div>
+  </form>
+
+  <div class='p-5 d-flex align-items-center justify-content-center' *ngIf="loader == 'loading'">
+    <mat-spinner diameter='60'></mat-spinner>
+  </div>
+  <div *ngIf="loader == 'inactive'" class='flex-grow-1'></div>
+  <div *ngIf="tickerError!=''" class="container mt-3">
+    <ngb-alert [dismissible]="false" style='text-align: center;' type="danger">{{tickerError}}</ngb-alert>
+  </div>
+  <app-companydetails class='p-1' *ngIf="(loader == 'loaded') && (tickerError == '')" [companyDetails]="companyDetails"
+     [searchSubmit]="searchSubmit"></app-companydetails>
+     <!-- [quoteDetails]="quoteDetails" -->
+</div>

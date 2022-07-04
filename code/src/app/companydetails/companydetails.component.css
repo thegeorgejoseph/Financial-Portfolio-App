@@ -1,0 +1,14 @@
+#company-img{
+    max-width: 80px;
+    max-height: 80px;
+    /* margin-left: -5rem; */
+
+}
+@media screen and (max-width: 600px) {
+  #companydetails-main {
+    font-size: 1rem;
+  }
+}
+.w-60 {
+  width: 60%;
+}

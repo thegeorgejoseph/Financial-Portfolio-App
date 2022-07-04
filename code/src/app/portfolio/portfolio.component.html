@@ -1,0 +1,21 @@
+<div class="container">
+
+  <ngb-alert #sellClosingAlert style='text-align: center;' *ngIf="isStockSold" type="danger" (closed)="isStockSold = false">{{stock}} sold successfully</ngb-alert>
+
+  <ngb-alert #buyClosingAlert style='text-align: center;' *ngIf="isStockBought" type="success" (closed)="isStockBought = false">{{stock}} bought successfully</ngb-alert>
+
+  <div class="h1 mt-4">My Portfolio</div>
+  <div class="h4">Money in Wallet: ${{moneyInWallet}}</div>
+
+  <div class="portfolio-companies">
+
+      <div *ngFor="let portfolio of portfolioDetails | keyvalue">
+        <app-portfolio-card [ticker]="portfolio.key" [value]='portfolio.value' [buyStockAlert]="buyStockAlert" [sellStockAlert]="sellStockAlert" [portfolioUpdate]="transactionUpdate">
+
+        </app-portfolio-card>
+      </div>
+      <ngb-alert [dismissible]="false" style='text-align: center;' *ngIf="noPortfolioCompanies" type="warning" class="alert_content">Currently you don't have any stock
+      </ngb-alert>
+
+  </div>
+</div>

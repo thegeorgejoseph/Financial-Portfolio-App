@@ -1,0 +1,18 @@
+<p>
+  <mat-tab-group mat-stretch-tabs mat-align-tabs="fit">
+    <!-- [curIdx]='2' -->
+    <mat-tab label='Summary'>
+      <app-summary [result]='result' [searchSubmit]="searchSubmit"></app-summary>
+      <!-- [quote]='quote' -->
+    </mat-tab>
+    <mat-tab label='Top news'>
+      <app-news [news]='result.news'></app-news>
+    </mat-tab>
+     <mat-tab label='Charts'>
+            <app-charts [ticker] = 'result.profile.ticker' [charts] = 'result.charts'></app-charts>
+        </mat-tab>
+    <mat-tab label='Insights'>
+            <app-insights [insights]='result.insights' ></app-insights>
+        </mat-tab>
+  </mat-tab-group>
+</p>

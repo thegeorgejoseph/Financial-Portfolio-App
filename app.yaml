@@ -1,0 +1,18 @@
+runtime: nodejs14
+
+# handlers:
+#     # Serve all JS files with text/javascript mime-type
+#     - url: /(.*\.js)$
+#       static_files: dist/\1
+#       upload: dist/(.*\.js)$
+#       mime_type: text/javascript
+    
+#     # Serve all static files with urls ending with a file extension
+#     - url: /(.*\..+)$
+#       static_files: dist/\1
+#       upload: dist/(.*\..+)$
+    
+#     # catch all handler to index.html
+#     - url: /.*
+#       static_files: dist/index.html
+#       upload: dist/index.html

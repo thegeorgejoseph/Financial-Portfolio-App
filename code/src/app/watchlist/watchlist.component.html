@@ -1,0 +1,17 @@
+<div class='container'>
+  <div class='h1 mt-3'>
+    My Watchlist
+  </div>
+  <div class='body'>
+    <ngb-alert *ngIf='watchlistEmpty' style='text-align: center;' id='no-ticker-alert' [dismissible]="false">
+      Currently you don't have any stock in your watchlist
+    </ngb-alert>
+
+    <div id='watchlist-card' *ngFor='let company of curWatchlist' class='d-flex mt-5'>
+
+      <app-watchlist-card class='w-100 '[ticker]='company' (onRemove)="delete($event)"></app-watchlist-card>
+
+    </div>
+
+  </div>
+</div>

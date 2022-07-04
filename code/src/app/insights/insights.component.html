@@ -1,0 +1,51 @@
+<div>
+    <div class='row display-flex justify-content-center '>
+        <div class="col-lg-6 col-sm-12 insights_table_container" id='insights'>
+            <div class='h3' id='title'>
+                Social Sentiments
+            </div>
+            <table>
+                <tr>
+                  <th>{{insights.name}}</th>
+                    <th>Reddit</th>
+                    <th>Twitter</th>
+                </tr>
+                <tr>
+                    <th>Total Mentions</th>
+                    <td>{{insights.reddit.mention}}</td>
+                    <td>{{insights.twitter.mention}}</td>
+
+
+                </tr>
+                <tr>
+                    <th>Positive Mentions</th>
+                    <td>{{insights.reddit.positiveMention}}</td>
+                    <td>{{insights.twitter.positiveMention}}</td>
+
+                </tr>
+                <tr>
+                    <th>Negative Mentions</th>
+                    <td>{{insights.reddit.negativeMention}}</td>
+                    <td>{{insights.twitter.negativeMention}}</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class='row ml-3 ' >
+        <div class='col-sm-12  col-lg-6 chart-container' >
+            <highcharts-chart [Highcharts]='highcharts'[options]="recommendationChartOptions"
+            style="width:28vw; height: 400px; display: block;">
+            </highcharts-chart>
+        </div>
+
+        <div class='col-sm-12  col-lg-6 chart-container' >
+            <highcharts-chart [Highcharts]='highcharts'[options]="earningsChartOptions"
+            style="width:28vw; height: 400px; display: block;">
+            </highcharts-chart>
+        </div>
+
+    </div>
+
+</div>
+

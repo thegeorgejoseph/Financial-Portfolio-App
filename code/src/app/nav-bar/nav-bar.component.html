@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-sm navbar-dark sticky-top" style="background-color: #2324ab;">
+  <a class="navbar-brand" routerLink="/search">Stock Search</a>
+  <button class="navbar-toggler"
+
+          type="button"
+          data-toggle="collapse"
+          data-bs-toggle="collapse"
+          data-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+  >
+      <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+      <div class="navbar-nav  ms-auto">
+          <a class="nav-item" ><li class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="closeNavbar()" routerLink="/search" (click)='navigate()' routerLinkActive="active">Search</li></a>
+          <a class="nav-item"><li class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="closeNavbar()" routerLink="/watchlist" routerLinkActive="active">Watchlist</li></a>
+          <a class="nav-item"><li class="nav-link" data-bs-toggle="collapse" data-bs-target=".navbar-collapse.show" (click)="closeNavbar()" routerLink="/portfolio" routerLinkActive="active">Portfolio</li></a>
+      </div>
+  </div>
+</nav>

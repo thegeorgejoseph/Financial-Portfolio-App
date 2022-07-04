@@ -1,0 +1,38 @@
+
+      <mat-card class='w-100 d-flex align-items-center justify-content-between mat-elevation-z0 outline mt-2'
+      (click)='searchTicker(ticker)' id='card'>
+
+      <mat-card-content id='news-title' class='d-flex flex-column  ml-2'>
+        <div class='h2'>
+          {{ticker}}
+        </div>
+        <div class='h5'>
+          {{quoteDetails.name}}
+        </div>
+      </mat-card-content>
+
+      <mat-card-content id='quote-details' class='d-flex flex-column ml-1 align-items-end font-weight-bold'>
+        <button type='button' class='btn-close' aria-label='Close' (click)='removeTicker()'>
+          <fa-icon [icon]='faXmark' [styles] = "{width: '1vw', height: '1vw', color: '#7d7d7d'}"></fa-icon>
+        </button>
+
+        <div class='d-flex flex-column  align-items-end'
+          [ngStyle]="{'color': quoteDetails.dp < 0 ? '#ea3323': '#367b21'}">
+          <div class='h2'>{{quoteDetails.l}}</div>
+          <div class='h4'>
+            <div id='stock-values'>
+              <fa-icon *ngIf="quoteDetails.dp > 0" [icon]='faCaretUp' [styles]="{color: '#367b21'}"></fa-icon>
+              <fa-icon *ngIf="quoteDetails.dp < 0" [icon]='faCaretDown' [styles]="{color: '#ea3323'}"></fa-icon>
+              {{quoteDetails.d}}
+              ({{quoteDetails.dp}}%)
+
+            </div>
+          </div>
+        </div>
+
+
+
+      </mat-card-content>
+
+
+    </mat-card>

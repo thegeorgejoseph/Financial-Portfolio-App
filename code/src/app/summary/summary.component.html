@@ -1,0 +1,92 @@
+<div id='summary' class='d-flex justify-content-around mt-3'>
+  <div id='summary-left-box col-lg-6 col-sm-12'>
+    <div id='quote-data' class='quote-row p-2 d-flex pl-5'>
+      <table  class='table table-responsive col-lg-5 col-sm-12'>
+        <tr>
+          <th>
+            High Price:
+          </th>
+          <td class='text-start'>
+            {{quote.h}}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Low Price:
+          </th>
+          <td>
+            {{quote.l}}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Open Price:
+          </th>
+          <td>
+            {{ quote.o}}
+          </td>
+        </tr>
+        <tr>
+          <th>
+            Prev. Close:
+          </th>
+          <td>
+            {{quote.pc}}
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div id='company-details' class='pt-3'>
+      <h4 id='title'> About the company</h4><br>
+      <div class='container'>
+        <div class="row p-1 justify-content-md-left">
+          <div class=" header">
+            IPO Start Date:
+          </div>
+          <div class="pl-1">
+            {{ result.profile.ipo}}
+          </div>
+        </div>
+
+        <div class="row p-1 justify-content-md-left">
+          <div class=" header">
+            Industry:
+          </div>
+          <div class="pl-1">
+            {{ result.profile.finnhubIndustry}}
+          </div>
+        </div>
+
+        <div class="row p-1 justify-content-md-left">
+          <div class=" header">
+            Webpage:
+          </div>
+          <div class="pl-1">
+            <a [href]='result.profile.weburl' target="_blank">
+            {{ result.profile.weburl}}
+          </a>
+          </div>
+        </div>
+
+        <div class="row p-1 justify-content-md-left">
+          <div class=" header">
+            Company Peers:
+          </div>
+          <div class='pt-1'>
+            <a *ngFor="let t of result.peers" class='peer-link' (click)='searchSubmit(t)'>
+              {{t}},
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="quote.charts[0].title != ''" class="col-lg-6 col-sm-12 chart">
+    <highcharts-chart [Highcharts]="highcharts" [options]="chartOptions"
+      style="width: 100%; height: 400px; display: block;">
+    </highcharts-chart>
+  </div>
+
+</div>

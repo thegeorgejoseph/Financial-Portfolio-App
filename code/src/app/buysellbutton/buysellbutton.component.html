@@ -1,0 +1,58 @@
+<div id="buy-sell" class='d-flex '>
+    <button type="button" class="btn btn-primary "
+
+        [ngClass]="{'btn-success': source==='search'}"
+        (click)="open(content,'Buy')">Buy</button>
+    <div class='pl-2'>
+        <button type="button"  *ngIf="currentQuantity!=0"  class="btn btn-danger"
+            (click)="open(content,'Sell')">Sell</button>
+    </div>
+</div>
+
+
+<ng-template #content let-modal>
+
+    <div class="modal-header">
+      <h6 class="modal-title pb-4" id="modal-basic-title">{{ticker}}</h6>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <fa-icon [icon]='faXmark' [styles] = "{width: '1vw', height: '1vw', color: '#7d7d7d'}"></fa-icon>
+      </button>
+    </div>
+
+
+    <div class="modal-body ">
+        <div>
+            Current Price: {{value}}
+        </div>
+        <div>
+            Money in Wallet: ${{ moneyInWallet }}
+        </div>
+
+        <div *ngIf="transactionType=='Sell'">Current Quantity: {{currentQuantity}}</div>
+
+        <div class='d-flex align-items-center'>
+            Quantity:
+            <input type='text' class='form-control w-50 ml-3' id='ticker' type='number' min='0'
+            (change)="changeInQuantity()"
+            [formControl]='quantityValue'>
+        </div>
+
+        <div *ngIf="errorMessage" style="color:#ea493f;" class="modal_error mt-2">{{ errorMessage }}!</div>
+
+    </div>
+
+
+    <div class="modal-footer d-flex justify-content-between">
+        <div class='total-val'>
+            Total: {{ tval }}
+        </div>
+        <button type='button' class='btn btn-success' [disabled]="errorMessage && quantityValue.value == 0"
+        (click)='transaction(); modal.close("Close Click")'> {{transactionType}}
+    </button>
+    </div>
+
+
+  </ng-template>
+
+
+
